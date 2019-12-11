@@ -1,0 +1,733 @@
+<!DOCTYPE html&gt>
+<html >
+<head>
+	
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link hrefs='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  
+  <link  href="styles/styless.css" rel="stylesheet">
+  <link  href="styles/normalize.css" rel="stylesheet">
+  <link href="styles/genfooter.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="resources/jquery-ui.css">
+  
+  <script src="resources/jquery-2.2.4.js"></script>
+
+  <script src="resources/jquery-ui.js"></script>
+
+  
+<script type="text/javascript">
+    //<![CDATA[
+
+        var headerSearchFormTarget = document.getElementById('eSearch-link');
+        if(headerSearchFormTarget !== null) {
+            kmsReact.ReactDOM.render(kmsReact.React.createElement(kmsReact.HeaderSearchForm,{ searchUrl: '/esearch/search?keyword', placeholder: 'Search all media', targetId: 'logoMark', renderTargetId: 'logoMarkTarget', headerId: 'navbar-inner-wrapper', headerLinkClass: 'eSearch__link', clearElementId: 'toplinks' ,mobileClearElementSelector: '.js-desktop-upload-menu', expanded: 0, tabIndex: 110} ), headerSearchFormTarget);
+        }    //]]>
+</script>
+
+
+</head>
+
+
+<script type='text/javascript'> 
+	// ON LOAD HANDLER
+	$(function(){
+		// Custom Functions
+		
+		function hideAllButOne(targetPage){
+			$("body > span:visible").not("#banner").hide();
+			$("#banner").show();
+			$("#" + targetPage).show();
+		}
+		
+		hideAllButOne('homePage');
+		// Handels if a user is already logged in
+		$.ajax({
+				url:"squidgLogic.php",
+				method:"POST",
+				data:{ 
+					form:"loggedin"
+				},
+				success:function(result){
+					hideAllButOne("homePage");
+				},
+				error:function(result){
+					$("span:visible").hide();
+					$("#loginPage").show();
+				}
+			});
+	
+		// Login page login button handler
+		$('#loginBttn').click(function(){
+			$('#loginFormErr').html('');
+			$.ajax({
+				url:"squidgLogic.php",
+				method:"POST",
+				data:{ 
+					username:$('#username').val(), 
+					password:$('#password').val(),
+					form:"loginForm"
+				},
+				success:function(result){
+					hideAllButOne("homePage");
+				},
+				error:function(result){
+					var res = result['responseText'];
+					res = jQuery.parseJSON(res);
+					$('#loginFormErr').html(res['error']);
+				}
+			});
+		});
+		// Login page login button handler
+		$('#clearSchedulerFormBttn').click(function(){
+			$('#schedulerForm')[0].reset();
+		});
+		
+		// Scheduler page sumbmit button handler
+		$('#schedulerFormBttn').click(function(){
+			console.log($('#startTime').val());
+			console.log($('#endTime').val())
+			$('#schedulerFormErr').html('');
+			$.ajax({
+				url:"squidgLogic.php",
+				method:"POST",
+				data:{ 
+					organizer:$('#organizer').val(),
+					subject:$('#subject').val(),
+					startTime:$('#startTime').val(),
+					endTime:$('#endTime').val(),
+					location:$('#location').val(),
+					school:$('#school').val(),
+					className:$('#className').val(),
+					classNumber:$('#classNumber').val(),
+					classSection:$('#classSection').val(),
+					classTerm:$('#classTerm').val(),
+					profName:$('#profName').val(),
+					guestLec:$('#guestLec').val(),
+					publishDelay:$('#publishDelay').val(),
+					keyTerms:$('#keyTerms').val(),
+					retentionPeriod:$('#retentionPeriod').val(),
+					form:"schedulerForm"
+				},
+				success:function(result){
+					var res = result;
+					res = jQuery.parseJSON(res);
+					$('#schedulerFormMsg').html(res['message'])
+				},
+				error:function(result){
+					var res = result['responseText'];
+					res = jQuery.parseJSON(res);
+					$('#schedulerFormErr').html(res['error'])
+					$('#schedulerFormMsg').html('')
+				}
+			});
+		});
+		
+		// KalturaEntryUpdater page submit button handler
+		$('#kalturaEntryUpdaterBttn').click(function(){
+			$('#kalturaEntryUpdaterFormErr').html('');
+			$.ajax({
+				url:"squidgLogic.php",
+				method:"POST",
+				data:{ 
+					kalturaEntryUpdater_entryID:$('#kalturaEntryUpdater_entryID').val(),
+					kalturaEntryUpdater_GUID:$('#kalturaEntryUpdater_GUID').val(),
+					form:"kalturaEntryUpdaterForm"
+				},
+				success:function(result){
+					var res = result;
+					res = jQuery.parseJSON(res);
+					$('#kalturaEntryUpdaterFormMsg').html(res['message'])
+				},
+				error:function(result){
+					var res = result['responseText'];
+					res = jQuery.parseJSON(res);
+					$('#kalturaEntryUpdaterFormErr').html(res['error'])
+					$('#kalturaEntryUpdaterFormMsg').html('')
+				}
+			});
+		});
+		
+		// Home link handeler
+		$('#homePageLnk').click(function(){
+			hideAllButOne("homePage");
+		});
+		
+		// Logout link handeler
+		$('#logoutLnk').click(function(){
+			$.ajax({
+				url:"squidgLogic.php",
+				method:"POST",
+				data:{ 
+					form:"logout"
+				},
+				success:function(result){
+					$("span:visible").hide();
+					$("#logoutPage").show();
+				},
+				error:function(result){
+				}
+			});
+		});
+		
+		// Home > "Schedule a Capture" link handeler
+		$('#schedulerPageLnk').click(function(){
+			hideAllButOne("schedulerPage");
+		});
+		$('#schedulerPageLnk').click(function(){
+			hideAllButOne("schedulerPage");
+		});
+		$('#kalturaEntryUpdaterPageLnk').click(function(){
+			hideAllButOne("kalturaEntryUpdaterPage");
+		});
+		$('#loginPage').keypress(function(e){
+			if(e.keyCode==13)
+			$('#loginBttn').click();
+		});
+});
+	
+</script>
+
+<style>
+html {
+	font-family:"Arial";
+}
+
+.right {
+    float: right;
+    width: 300px;
+    padding: 1px;
+}
+
+.left {
+	float: left;
+    width: 300px;
+    padding: 1px;
+}
+
+.error {
+	color: red;
+}
+
+.mgmtOpt {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+
+
+li {
+  text-align: center;
+  
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+.roomSelection{
+      margin: auto;
+      width: 50%;
+      border: 3px solid green;
+      padding: 10px;
+
+    }
+.label{
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 32px;
+    text-transform: 
+  
+}
+</style>
+
+
+
+
+
+<body id="body">
+
+<header>
+      <figure style="margin:0;" class="luthumbnail">
+      <a href="scheduler.html"> <img src="images/logo/LUSoL.JPG"  alt="placeholder" > </a> 
+      </figure>
+      <!--
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+       <title>Login</title>
+	  -->
+<span id="banner">
+		<div id="lu-gh-bar">
+		  <ul1 id="lu-gh-links">
+		    <li id="lu-gh-official"><a href="javascript:void(0)" id="homePageLnk" class="lu-gh-active-link"3>Home</a></li>
+		    <li><a href="about.html" data-href="more" id="lu-gh-more" class="lu-gh-control">About</a></li>
+		  <!-- href="listRecordings.html"  id="lu-gh-Schedule"  -->
+		  <li><a id="schedulerPageLnk" href="scheduleCapture.html" class="lu-gh-control">Schedule A Capture </a></li>
+		    <li><a href="listRecordings.html" data-href="more" id="lu-gh-more" class="lu-gh-control">Show/Delete</a></li>
+
+		  </ul1>
+
+		 <div class="signin">
+		  <ul id="lu-gh-links">
+		    <li> <a id="logoutLnk" href="javascript:void(0)" class="lu-gh-control">Logout</a> </li>
+		  </ul>
+		 </div>
+		<ul id="lu-gh-user" style="top: 0px; opacity: 1; display: block;"></ul>
+		</div>
+</span><br>
+
+ </header>
+
+
+<!-- LOGIN PAGE -->
+
+<span id="loginPage">
+	<center><h3>Scheduler Login</h3></center>
+	<form id="loginForm" method=POST>
+	<div class="login-wrap">
+	  <div class="login-html">
+	    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+	    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+		  
+			    <div class="login-form">
+			      <div class="sign-in-htm">
+			        <div class="group">
+					
+
+							
+							
+							<label for="user" class="label">Username</label>
+							<input type="text" id="username" name="username" class="input"> <br>
+							<label for="pass" class="label">Password</label>
+							<input type="password" id="password" name="password" class="input" data-type="password"><br>
+							
+		          				<input type="submit" class="button" value="Login" id="loginBttn">
+		        			
+							<span class="error" id="loginFormErr"></span>
+							
+
+
+			        </div>
+			      </div>
+			    </div>
+			
+					
+	    </div>
+	  </div>
+	  
+	</form>
+</span>
+
+<!--END LOGIN PAGE -->
+
+
+
+
+
+<!--- Begin modified HP -->
+<span id="homePage">
+	<center><h1 class="page-header home__playlist-name-heading">Device Access</h1></center><br><br>
+	<div style="padding-left: 65px;">
+		<h4>Manage Schedules</h4>
+		<div class= "mgmtOpt">
+			<ul style="margin-bottom: 0px;">
+				<li><a id="schedulerPageLnk" href="scheduleCapture.html" class="lu-gh-control">Schedule A Capture </a></li>
+				
+				<li>
+					<a id="listRecording" href="listRecordings.html">Show/Delete</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+</span>
+<!--End Modified HP-->
+
+<!-- SCHEDULER PAGE -->
+<span id="schedulerPage">
+	<h3>Schedule A Capture</h3>
+	<form class ="roomSelection"id="schedulerForm">
+		<table border="1">
+			<tr><td>* Organizer:</td><td>
+									<select id="organizer" name="organizer">
+										<option value="" selected ></option>
+										<option value="lucomomsischedule@liberty.edu">lucomomsischedule@liberty.edu</option>
+										<option value="lucomomsiischedule@liberty.edu">lucomomsiischedule@liberty.edu</option>
+									</select>
+							</td></tr>
+			<tr><td>* Subject:</td><td><input type="text" id="subject" name="subject" ></td></tr>
+			<tr><td>* Start Time (EST):</td><td><input type="text" id="startTime" name="startTime" ><i>YYYY/MM/DD HH:mm:ss</i></td></tr> 
+			<tr><td>* End Time (EST):</td><td><input type="text" id="endTime" name="endTime" ><i>YYYY/MM/DD HH:mm:ss</i></td></tr>
+			<tr><td>*Room:</td><td>
+								<select id="location" name="location">
+									 <option value="" selected ></option>
+                  					 <option value="GH1705@liberty.edu">SOL - GH1705 Mock Courtroom</option>
+                  					 <option value="GH1765@liberty.edu">SOL - GH1765 Mock Courtroom</option>
+                  					 <option value="GH1770@liberty.edu">SOL - GH1770</option>
+                  					 <option value="GH1713@liberty.edu">SOL - GH1713 </option>
+                  					 <option value="GH1771@liberty.edu">SOL - GH1771 Supreme Court Room</option>
+                  					 <option value="GH1774@liberty.edu">SOL - GH1774</option>
+                  					 <option value="GH1745@liberty.edu">SOL - GH1745 </option>
+								</select>
+							</td></tr>
+			<!-- <tr><td>* School:</td> <td>-->  <input type="hidden" id="school" name="school" value="LCOM"> <!-- </td></tr> -->
+			<!-- <tr><td>Class Name:</td><td><input type="text" id="className" name="className" ></td></tr> -->
+			<!--<tr><td>* Class Number:</td><td><input type="text" id="classNumber" name="classNumber" ></td></tr> --> 
+			<!--<tr><td>* Class Section:</td><td><input type="text" id="classSection" name="classSection" value="001"></td></tr> -->
+			<!--<tr><td>* Class Term:</td><td><input type="text" id="classTerm" name="classTerm" value="201925"></td></tr> -->
+			<!-- <tr><td>Professor's Name:</td><td><input type="text" id="profName" name="profName" ></td></tr> -->
+			<!-- <tr><td>Guest lecturer:</td><td>
+											<select id="guestLec">
+												<option value="" selected>No</option>
+												<option value="yes">Yes</option>
+											</select>
+										</td></tr> -->
+			<!-- <tr><td>Publishing delay:</td><td><input type="text" id="publishDelay" name="publishDelay" value="0"></td></tr> --> 
+			<!-- <tr><td>Key Terms/tags:</td><td><input type="text" id="keyTerms" name="keyTerms" ></td></tr> --> 
+			<!-- <tr><td>* Retention Period:</td><td> --> <input type="hidden" id="retentionPeriod" name="retentionPeriod" value="48"><!-- </td></tr> -->
+		</table>
+		<p>* Required field</p>
+		<input type="button" id="schedulerFormBttn" value="Submit">  <input type="button" id="clearSchedulerFormBttn" value="Clear"><br>
+		<span class="error" id="schedulerFormErr"></span>
+		<span id="schedulerFormMsg"></span>
+	</form>
+</span>
+<!-- END SCHEDULER PAGE -->
+
+
+<span id="logoutPage">
+	<h3>You have successfully logged out!</h3>
+</span>
+
+
+
+</body>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" style="" class=" js canvas no-touch history cssanimations cssgradients csstransforms csstransforms3d csstransitions video audio localstorage formvalidation">
+
+
+<style type="text/css" media="screen">
+
+<!--[if lt IE 9]> 
+
+    body{-ms-overflow-y : scroll;}
+</style>
+
+<!--Add static header-->
+
+<!-- End Static Header -->
+
+<!-- Begin Static Css-->
+<link href="fvk/rfdefk.css" media="screen" rel="stylesheet">
+<!--End Static Css-->
+
+<body class="module-home controller-index action-index  menu-horizontal v2ui shrink--enabled">
+    
+                        
+
+
+
+    <!-- Carousel -->
+<div id="entrySlider" class="imageSlide carousel nofocus slide  carenrightleft" style="user-select: none;">
+<div class="carousel-indicators-outer-wrapper">
+<div class="carousel-indicators-wrapper">
+                   
+</div>
+ </div>
+<!--End Keep-->
+
+
+<!-- Begin Containter for Endpoints-->
+<span id = "homePage">
+<div class="container">
+    <!-- other playlists -->
+    
+<center>
+<ul class="thumbnails">
+	    <li class="span4">
+            <div class="photo-group featured_wrapper" >
+                <a href="http://10.226.12.16/#dashboard">
+                    <img src="images/rooms/a1Red.jpg" alt="AI " width="478" height="269">
+                        <div class="overlay-wrapper"> </div>
+                        <div class="thumb_icon label-inverse wrap-icon-film" aria-label="Video" style="width: 0px">
+                            <p class="thumb_icon_content">
+                                <i class="icon-film icon-white" aria-hidden="true"></i>
+                            </p>
+                        </div>
+                        <div class="thumb_labels_wrapper">
+                            <div class="thumb_time label-inverse">
+                                 <p class="thumb_time_content">
+                                    
+                    	            <span class="duration"></span>
+                                </p>
+                            </div>
+                        <div class="thumb_name label-inverse">
+                            <p class="thumb_name_content">SOL - GH1705 Mock Courtroom<</p>
+                        </div>
+                         <div class="thumb_extra">
+                            <div class="hidden visible-v2ui">
+                                <div class="progress history-progress started">
+                                    <div class="bar" style="width: 0%">
+                                        
+                                    </div>
+                                </div>
+                            </div>            
+                        </div>
+                        </div>
+                </a>
+            </div>
+        </li>
+        <li class="span4">
+                    <div class="photo-group featured_wrapper" >
+                        <a href="http://10.7.60.133/#dashboard">
+                            <img src="images/rooms/a2Blue.jpg" alt="AII " width="478" height="269">
+                                <div class="overlay-wrapper"> </div>
+                                <div class="thumb_icon label-inverse wrap-icon-film" aria-label="Video" style="width: 0px">
+                                    <p class="thumb_icon_content">
+                                        <i class="icon-film icon-white" aria-hidden="true"></i>
+                                    </p>
+                                </div>
+                                <div class="thumb_labels_wrapper">
+                                   
+                                <div class="thumb_name label-inverse">
+                                    <p class="thumb_name_content">SOL - GH1765 Mock Courtroom</p>
+                                </div>
+                                 <div class="thumb_extra">
+                                    <div class="hidden visible-v2ui">
+                                        <div class="progress history-progress started">
+                                            <div class="bar" style="width: 0%">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>            
+                                </div>
+                                </div>
+                        </a>
+                    </div>
+                </li>
+        <li class="span2">
+            <div class="photo-group featured_wrapper">
+                <a href="http://10.7.60.16/#dashboard">
+                    <img src="images/rooms/paClass.jpg" alt="PA Class Room" width="478" height="269">
+                        <div class="overlay-wrapper"> </div>
+                        <div class="thumb_icon label-inverse wrap-icon-film" aria-label="Video" style="width: 0px">
+                            <p class="thumb_icon_content">
+                                <i class="icon-film icon-white" aria-hidden="true"></i>
+                            </p>
+                        </div>
+                        <div class="thumb_labels_wrapper">
+                            <div class="thumb_time label-inverse">
+                                <p class="thumb_time_content">
+                                    <span class="views">
+                                        20&nbsp;&nbsp;
+                                        <i class="icon-eye-open icon-white"></i>
+                                        <span class="seperator">&nbsp;|&nbsp;</span>
+                                    </span>
+                                </p>
+                            </div>
+                                <div class="thumb_name label-inverse">
+                                    <p class="thumb_name_content">SOL - GH1771 Supreme Court Room</p>
+                                </div>
+                                <div class="thumb_extra">
+                                    <div class="hidden visible-v2ui"></div>
+                                </div>
+                        </div>
+                </a>
+            </div>
+        </li>
+    </ul>
+
+ 
+
+    <ul class="thumbnails" style="margin-top: 0px;margin-bottom: 10px;">
+	    <li class="span4">
+            <div class="photo-group featured_wrapper">
+                <a href="http://10.7.60.21/#dashboard">
+                    <img src="images/rooms/sim2042.jpg" alt="Simulation Lab 2042" width="478" height="269">
+                    <div class="overlay-wrapper"> </div>
+                    <div class="thumb_icon label-inverse wrap-icon-film" aria-label="Video">
+                        <p class="thumb_icon_content">
+                            <i class="icon-film icon-white" aria-hidden="true"></i>
+                        </p>
+                    </div>
+                    <div class="thumb_labels_wrapper">
+                        <div class="thumb_time label-inverse">
+                            <p class="thumb_time_content">
+                                <span class="views">
+                                42,685&nbsp;&nbsp;<i class="icon-eye-open icon-white"></i><span class="seperator">&nbsp;|&nbsp;</span>
+                                </span>
+                                
+                            </p>
+                        </div>
+                        <div class="thumb_name label-inverse">
+                            <p class="thumb_name_content">SOL - GH1770 / GH1713</p>
+                        </div>
+                    <div class="thumb_extra"></div>
+                    </div>
+                </a>
+            </div>
+         </li>
+
+
+    <ul class="thumbnails" style="margin-top: 0px;margin-bottom: 10px;">
+	    <li class="span4">
+           <div class="photo-group featured_wrapper" style="margin-left: 20px;margin-bottom: 0px;border-bottom-width: 5px;padding-bottom: -10;bottom: 1px;">
+                <a href="http://10.7.60.136/#dashboard">
+                    <img src="images/rooms/sim2042.jpg" alt="Simulation Lab 2042" width="478" height="269">
+                    <div class="overlay-wrapper"> </div>
+                    <div class="thumb_icon label-inverse wrap-icon-film" aria-label="Video">
+                        <p class="thumb_icon_content">
+                            <i class="icon-film icon-white" aria-hidden="true"></i>
+                        </p>
+                    </div>
+                    <div class="thumb_labels_wrapper">
+                        <div class="thumb_time label-inverse">
+                            <p class="thumb_time_content">
+                                <span class="views">
+                                42,685&nbsp;&nbsp;<i class="icon-eye-open icon-white"></i><span class="seperator">&nbsp;|&nbsp;</span>
+                                </span>
+                                
+                            </p>
+                        </div>
+                        <div class="thumb_name label-inverse">
+                            <p class="thumb_name_content">SOL - GH1774 / GH1745</p>
+                        </div>
+                    <div class="thumb_extra"></div>
+                    </div>
+                </a>
+            </div>
+
+            <li class="span4">
+
+        </li>
+</center>
+
+
+<!--End Container For endpoitns-->
+
+<!-- viewhook start siteFooter -->
+<span >
+
+<!-- viewhook end siteFooter -->
+</div>
+            </div>
+            <div id="push"></div>
+        </div>
+<span id="banner">
+<footer class="site-footer" style="height: 400px;">
+	<div class="footer__inner footer__inner--main" style="padding-bottom: 0px;margin-bottom: 0px;height: 290px;">
+		<div class="footer__mobile--1">
+			<div class="footer__block footer__block--one" style="height: 1px;margin-bottom: 100px;">
+      
+        <svg class="footer__logo" aria-label="Liberty University" viewBox="0 0 85 73" id="LU" width="100%" height="100%"><title>Fill 1</title><img src="images/logo/lowerIMG.JPG" alt="placeholder" >  </svg>
+
+      			</div>
+			
+		</div>
+    <div class="footer__mobile--2">
+			<div class="footer__block  footer__block--three">
+			<div class="menu-footer1-container"><ul id="menu-footer1" class="footer__menu"><li class="acodeLink"><a href="https://watch.liberty.edu/">Kaltura Video Portal</a></li>
+<li><a href="https://libertyu.instructure.com">Canvas</a></li>
+<li><a href="http://www.liberty.edu/index.cfm?PID=18468">Emergency Information</a></li>
+<li class="acodeLink"><a href="https://www.liberty.edu/webex">WebEx</a></li>
+</ul></div>			</div>
+		
+		</div>
+		<div class="footer__mobile--3">
+			<div class="footer__block  footer__block--five">
+				<div class="footer__socialRow--one">
+					<div class="footer__inner footer__inner--copyright">
+						<div class="footerCopyright__left">
+							<div class="footerCopyright__localTime">
+								<p> Scheduler Version 1.0.1 | Liberty Local Time: <span id="libertytime">10:08 a.m.</span> ET</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</footer>    
+</span>
+
+<script type="text/javascript">
+    //<![CDATA[
+
+        var headerSearchFormTarget = document.getElementById('eSearch-link');
+        if(headerSearchFormTarget !== null) {
+            kmsReact.ReactDOM.render(kmsReact.React.createElement(kmsReact.HeaderSearchForm,{ searchUrl: '/esearch/search?keyword', placeholder: 'Search all media', targetId: 'logoMark', renderTargetId: 'logoMarkTarget', headerId: 'navbar-inner-wrapper', headerLinkClass: 'eSearch__link', clearElementId: 'toplinks' ,mobileClearElementSelector: '.js-desktop-upload-menu', expanded: 0, tabIndex: 110} ), headerSearchFormTarget);
+        }    //]]>
+</script>
+<script>
+if (top != self)
+{
+    top.location=self.document.location;
+}
+</script>
+    </div>
+
+	<script>
+	function isDST() {
+    var date = new Date(),
+      a = new Date(date.getFullYear(), 0, 1),
+      b = new Date(date.getFullYear(), 6, 1),
+      stdTimezoneOffset = Math.max(a.getTimezoneOffset(), b.getTimezoneOffset());
+    return date.getTimezoneOffset() < stdTimezoneOffset;
+  }
+  function setTime() {
+    var clientDate = new Date(),
+      offset = isDST() ?
+        offset = -4 :
+        offset = -5,
+      utc = clientDate.getTime() + 6e4 * clientDate.getTimezoneOffset(),
+      serverDate = new Date(utc + 36e5 * offset),
+      formattedTime = formatHoursMinutes(serverDate.getHours(), serverDate.getMinutes());
+    document.getElementById("libertytime").innerHTML = formattedTime;
+    document.getElementById("copyrightYear").innerHTML = serverDate.getFullYear();
+  }
+  function formatHoursMinutes(hour, minute) {
+    var suffix = hour >= 12 ? "p.m." : "a.m.",
+      hour12 = hour > 12 ? hour - 12 : hour,
+      formattedHour = "00" == hour12 ? 12 : hour12,
+      formattedMinute = 10 > minute ? "0" + minute : minute;
+    return formattedHour + ":" + formattedMinute + " " + suffix;
+  }
+  setTime();
+  $(window).scroll(function () {
+    var libertyTime = document.getElementById('libertytime');
+    if (libertyTime !== null) {
+      var nTopWindow = window.pageYOffset,
+        nHeightScroll = nTopWindow + window.innerHeight,
+        nTopElement = libertyTime.getBoundingClientRect().top,
+        nElementScroll = nTopWindow + libertyTime.getBoundingClientRect().height;
+      if (nElementScroll >= nTopWindow - 0 && nTopElement <= nHeightScroll + 0) {
+        setTime();
+      }
+    }
+  });
+  </script>
+
+
+    
+</body></html>
+ 
+
+</html>

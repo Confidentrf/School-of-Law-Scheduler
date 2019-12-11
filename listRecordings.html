@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+  <title>Login Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link hrefs='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  
+  <link  href="styles/styless.css" rel="stylesheet">
+  <link  href="styles/normalize.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styleSched.css">
+  <link href="styles/genfooter.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="resources/jquery-ui.css">
+  
+  <script src="resources/jquery-1.12.4.js"></script>
+
+  <script src="resources/jquery-ui.js"></script>
+  <script src="resources/jquery-3.3.1.min.js" type="text/javascript"></script>
+    
+<header>
+      <figure style="margin:0;" class="luthumbnail">
+      <a href="scheduler.html"> <img src="images/logo/LUSoL.JPG"  alt="placeholder" > </a> 
+      </figure>
+      <!--
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+       <title>Login</title>
+      -->
+<span id="banner">
+        <div id="lu-gh-bar">
+          <ul1 id="lu-gh-links">
+            <li id="lu-gh-official"><a href="scheduler.html" id="homePageLnk" class="lu-gh-control">Home</a></li>
+            <li><a href="about.html" data-href="more" id="lu-gh-more" class="lu-gh-control">About</a></li>
+          <!-- href="listRecordings.html"  id="lu-gh-Schedule"  -->
+          <li><a id="schedulerPageLnk" href="scheduleCapture.html" class="lu-gh-control">Schedule A Capture </a></li>
+            <li><a href="listRecordings.html" data-href="more" id="lu-gh-more" class="lu-gh-active-link">Show/Delete</a></li>
+
+          </ul1>
+
+         <div class="signin">
+          <ul id="lu-gh-links">
+            <li> <a id="logoutLnk" href="javascript:void(0)" class="lu-gh-control">Logout</a> </li>
+          </ul>
+         </div>
+        <ul id="lu-gh-user" style="top: 0px; opacity: 1; display: block;"></ul>
+        </div>
+</span><br>
+
+ </header>
+
+
+
+
+    <script>
+        $(document).ready(function() {
+          $(".drop .option").click(function() {
+            var val = $(this).attr("data-value"),
+                $drop = $(".drop"),
+                prevActive = $(".drop .option.active").attr("data-value"),
+                options = $(".drop .option").length;
+            $drop.find(".option.active").addClass("mini-hack");
+            $drop.toggleClass("visible");
+            $drop.removeClass("withBG");
+            $(this).css("top");
+            $drop.toggleClass("opacity");
+            $(".mini-hack").removeClass("mini-hack");
+            if ($drop.hasClass("visible")) {
+              setTimeout(function() {
+                $drop.addClass("withBG");
+              }, 400 + options*100); 
+            }
+            triggerAnimation();
+            if (val !== "placeholder" || prevActive === "placeholder") {
+              $(".drop .option").removeClass("active");
+              $(this).addClass("active");
+            };
+          });
+          
+          function triggerAnimation() {
+            var finalWidth = $(".drop").hasClass("visible") ? 22 : 20;
+            $(".drop").css("width", "24em");
+            setTimeout(function() {
+              $(".drop").css("width", finalWidth + "em");
+            }, 400);
+          }
+        });
+    </script>
+    <script>
+    // delete button
+    function removeEvent(eventId, ip){
+        var conf = confirm("Are you sure you want to delete this event?");
+        if (conf == false){
+            return;
+        }
+        $.ajax({
+            url:"http://lulcs02.phones.liberty.edu/cattura/listRecordings/listRecordings.php"
+            ,async:false
+            ,method: "GET"
+            ,data:{
+                action:"removeEvent"
+                ,eventid: eventId
+                ,target: ip
+                }
+            ,dataType:"json"
+            ,success:function(){
+                $('#'+ eventId).hide();
+            }
+            ,error:function(){
+                $('#error').html("An error was encountered while trying to remove the recording.");
+            }
+        })
+    }   
+    
+    $(function(){
+        // clear button
+        $('#clear').click(function(){
+            $('#rows').html("");
+        });
+
+        // go button
+        $('#go').click(function(){
+            var target = $('#target').val();
+            if($('#range1').val() != ""){
+                var range = $('#range1').val();
+            } else {
+                var range = $('#range2a').val() + ' ' + $('#range2b').val()
+            }
+            $("#form").disable
+            $('#error').html("");
+            $('#rows').html("");
+            $('#norows').html("");
+            $('#go').attr("disabled", true);
+            $('#clear').attr("disabled", true);                
+            $('#load').toggle();
+            $.ajax({
+                url:"http://lulcs02.phones.liberty.edu/cattura/listRecordings/listRecordings.php"
+                ,async:false
+                ,method: "GET"
+                ,data:{
+                    target: target
+                    ,range: range
+                    }
+                ,dataType:"json"
+                ,success:function(data,status,xhr){
+                    $('#go').attr("disabled", false);
+                    $('#clear').attr("disabled", false);
+                    $('#load').toggle();
+                    if(xhr.status == 204){
+                        $('#norows').html("No recordings scheduled");
+                    } else{   
+                        var headers = '<tr><th>Name</th><th>Start Time</th><th>End Time</th><th>Completed</th><th>Id</th><th>Remove Event</tr>';
+                        $('#rows').append(headers);
+                        $.each(data,function(){
+                            var tmp = '<tr id='+ this.eventId + '>';
+                                tmp += '<td>' + this.name + '</td>';
+                                tmp += '<td>' + this.startTime + '</td>';
+                                tmp += '<td>' + this.endTime + '</td>';
+                                tmp += '<td>' + this.recordingComplete + '</td>';
+                                tmp += '<td>' + this.id + '</td>';
+                                tmp += '<td><button type="button" onclick="removeEvent(' + this.eventId + ',\'' + this.ip + '\')">Remove event</button></td>';
+                                tmp +='</tr>';
+                            $('#rows').append(tmp);
+                        });
+                    }
+                }
+                ,error:function(data){
+                    $('#error').html("An error was encountered while trying to get the recordings.");
+                    $('#go').attr("disabled", false);
+                    $('#clear').attr("disabled", false);
+                    $('#load').toggle();
+                }
+            });
+        });
+
+    });
+    </script>
+    <style>
+    table{
+        border-style: solid;
+        border-collapse: collapse;
+    }
+    tr{
+        border-style: solid;
+    }
+    th,td {
+        border-style: solid;
+        padding: 5px;
+    }
+    #error{
+        color:red;
+    }
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    #load{
+        display:none;
+    }
+ .roomSelection{
+      margin: auto;
+      width: 50%;
+      border: 3px solid green;
+      padding: 10px;
+
+    }
+.label{
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 32px;
+    text-transform: 
+  
+}
+    </style>
+</head>
+<body>
+
+
+    <form id="form">
+         <h1 class="label" > View Scheduled Recordings</h1>
+
+        <div class= "roomSelection" >
+
+            <label class="option active placeholder" data-value="placeholder">Choose Room:</label>
+       
+
+       <!--
+            <select id="target" >
+                   
+                    <option value="10.226.12.133" >CHMS 1025 Auditorium 1</option>
+                    
+                    
+                    <option value="10.226.12.29" class="option" data-value="10.226.12.29">CHMS 1014 Auditorium 2</option>
+                    
+                    <option value="10.226.12.27" class="option" data-value="10.226.12.29">CHMS 1047 PA Classroom</option>
+                    <option value="10.226.13.171" class="option" data-value="10.226.13.171">CHMS 2042 Simulation Classroom 1</option>
+                    <option value="10.226.13.43" class="option" data-value="10.226.13.43">CHMS 2049 Simulation Classroom 2</option>
+                    <option value="10.226.16.31" class="option" data-value="10.226.16.31">CHMS 4067 OMM Lab 1</option>
+                    <option value="10.226.16.32" class="option" data-value="10.226.16.32">CHMS 4005 OMM Lab 2</option>
+                    <option value="10.226.16.18" class="option" data-value="10.226.16.18">CHMS 4056 Anatomy Lab</option>
+                    
+              </select>
+           -->
+            <select id="target">
+                <option value="10.7.60.133">SOL - GH1705 Mock Courtroom</option>
+                <option value="10.7.60.16">SOL - GH1765 Mock Courtroom</option>
+                <option value="10.7.60.21"> SOL - GH1770 / GH1713</option>
+                <option value="10.7.60.23">SOL - GH1771 Supreme Court Room</option>
+                <option value="10.7.60.136">SOL - GH1774 / GH1745 </option>
+            </select>   
+            <br>
+            <br>
+            <span>Recent Recordings:</span>
+            <br>
+            <label>Day Range:</label>
+            <select id="range1">
+                <option value=""></option>
+                <option value="today">today</option>
+                <option value="tomorrow">tomorrow</option>
+                <option value="yesterday">yesterday</option>
+            </select>
+            <br>
+            <br>
+
+            <span>Or Look Ahead:</span>
+            <br>
+                        <label>Week/Month/Year:</label>
+            <select id="range2a">
+                <option value=""></option>
+                <option value="this">this</option>
+                <option value="next">next</option>
+    
+            </select>
+            <select id="range2b">
+                    <option value=""></option>
+                    <option value="week">week</option>
+                    <option value="month">month</option>
+                    <option value="year">year</option>
+            </select>
+            <br>
+            <br>
+            <input id="go" type="button" value="Search">&nbsp;&nbsp;<input id="clear" type="button" value="Clear Fields">
+    </div>
+    </form>
+    <br>
+    <br>    
+    <span id="error"></span>
+    <br>
+    <span id="norows"></span>
+    <span id="load"><img src="resources/loading.gif"></span>
+    <table id="rows">
+        
+    </table>
+    
+
+    <script src="js/index.js"></script>
+
+</body>
+<footer class="site-footer" style="height: 400px;margin-top: 300px;">
+    <div class="footer__inner footer__inner--main" style="padding-bottom: 0px;margin-bottom: 0px;height: 290px;">
+        <div class="footer__mobile--1">
+            <div class="footer__block footer__block--one" style="height: 1px;margin-bottom: 100px;">
+      
+        <svg class="footer__logo" aria-label="Liberty University" viewBox="0 0 85 73" id="LU" width="100%" height="100%"><title>Fill 1</title><img src="images/logo/lowerIMG.JPG" alt="placeholder" >  </svg>
+
+                </div>
+            
+        </div>
+    <div class="footer__mobile--2">
+            <div class="footer__block  footer__block--three">
+            <div class="menu-footer1-container"><ul id="menu-footer1" class="footer__menu"><li class="acodeLink"><a href="https://watch.liberty.edu/">Kaltura Video Portal</a></li>
+<li><a href="https://libertyu.instructure.com">Canvas</a></li>
+<li><a href="http://www.liberty.edu/index.cfm?PID=18468">Emergency Information</a></li>
+<li class="acodeLink"><a href="https://www.liberty.edu/webex">WebEx</a></li>
+</ul></div>         </div>
+        
+        </div>
+        <div class="footer__mobile--3">
+            <div class="footer__block  footer__block--five">
+                <div class="footer__socialRow--one">
+                    <div class="footer__inner footer__inner--copyright">
+                        <div class="footerCopyright__left">
+                            <div class="footerCopyright__localTime">
+                                <p> Scheduler Version 1.0.1 | Liberty Local Time: <span id="libertytime">10:08 a.m.</span> ET</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>    
+</span>
+<script>
+if (top != self)
+{
+    top.location=self.document.location;
+}
+</script>
+    </div>
+
+    <script>
+    function isDST() {
+    var date = new Date(),
+      a = new Date(date.getFullYear(), 0, 1),
+      b = new Date(date.getFullYear(), 6, 1),
+      stdTimezoneOffset = Math.max(a.getTimezoneOffset(), b.getTimezoneOffset());
+    return date.getTimezoneOffset() < stdTimezoneOffset;
+  }
+  function setTime() {
+    var clientDate = new Date(),
+      offset = isDST() ?
+        offset = -4 :
+        offset = -5,
+      utc = clientDate.getTime() + 6e4 * clientDate.getTimezoneOffset(),
+      serverDate = new Date(utc + 36e5 * offset),
+      formattedTime = formatHoursMinutes(serverDate.getHours(), serverDate.getMinutes());
+    document.getElementById("libertytime").innerHTML = formattedTime;
+    document.getElementById("copyrightYear").innerHTML = serverDate.getFullYear();
+  }
+  function formatHoursMinutes(hour, minute) {
+    var suffix = hour >= 12 ? "p.m." : "a.m.",
+      hour12 = hour > 12 ? hour - 12 : hour,
+      formattedHour = "00" == hour12 ? 12 : hour12,
+      formattedMinute = 10 > minute ? "0" + minute : minute;
+    return formattedHour + ":" + formattedMinute + " " + suffix;
+  }
+  setTime();
+  $(window).scroll(function () {
+    var libertyTime = document.getElementById('libertytime');
+    if (libertyTime !== null) {
+      var nTopWindow = window.pageYOffset,
+        nHeightScroll = nTopWindow + window.innerHeight,
+        nTopElement = libertyTime.getBoundingClientRect().top,
+        nElementScroll = nTopWindow + libertyTime.getBoundingClientRect().height;
+      if (nElementScroll >= nTopWindow - 0 && nTopElement <= nHeightScroll + 0) {
+        setTime();
+      }
+    }
+  });
+  </script>
+
+</body>
+</html>

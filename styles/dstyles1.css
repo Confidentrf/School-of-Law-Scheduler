@@ -1,0 +1,751 @@
+
+#video-instruction {
+    padding: 90px;
+    padding-top: 90px;
+    padding-right: 90px;
+    padding-bottom: 90px;
+    padding-left: 90px;
+}
+.content {
+    padding: 60px 40px;
+    margin: 0 auto;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+    display: block;
+}
+body, .rich-content {
+    line-height: 1.6;
+    color: #4e5758;
+}
+html {
+    background: #fff;
+    font-size: 16px;
+    font-family: "WeblySleek UI","Segoe UI","Helvetica Neue",Arial,sans-serif;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.content:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+.wrapper {
+    max-width: 1180px;
+}
+div {
+    display: block;
+}
+body, .rich-content {
+    line-height: 1.6;
+    color: #4e5758;
+}
+html {
+    background: #fff;
+    font-size: 16px;
+    font-family: "WeblySleek UI","Segoe UI","Helvetica Neue",Arial,sans-serif;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+.columns:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+#video-instruction #vid-box #kaltura_player {
+    background-image: url();
+    background-size: cover;
+    height: 437px;
+    width: 760px;
+    padding: 0px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+#kaltura_player {
+
+
+
+}
+.columns {
+    width: auto;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+.columns .cell.width-8 {
+    width: 66.667%;
+}
+.columns .cell.first {
+    margin-left: 0!important;
+    clear: left;
+}
+.columns .cell {
+    margin: 0;
+    padding: 0 20px;
+    float: left;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+.width-8 {
+    margin: 0 auto;
+    width: 66.667%;
+}
+div {
+    display: block;
+}
+body, .rich-content {
+    line-height: 1.6;
+    color: #4e5758;
+}
+#video-instruction h1 {
+    font-size: 24px;
+}
+
+#video-instruction h1 a {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    font-weight: lighter;
+    color: white;
+    text-decoration: none;
+}
+
+
+
+h1 {
+    color: #3498db;
+    font-size: 50px;
+    font-weight: 100;
+    line-height: 1.2;
+    margin: .3rem 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: normal;
+    font-style: normal;
+    font-family: inherit;
+}
+:-webkit-any(article,aside,nav,section) h1 {
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+}
+
+
+h1 {
+    display: block;
+    font-size: 2em;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+#video-instruction h2 {
+    font-size: 17px;
+    color: white;
+    margin-top: 7px;
+    font-weight: lighter;
+}
+
+h2:not(:first-child) {
+    margin-top: 1em;
+}
+
+h2 {
+    
+    
+    line-height: 1.4;
+    margin: .3rem 0;
+}
+
+
+
+#video-instruction #vid-box .box-wrapper {
+    background-image: url();
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+}
+.columns .cell.width-4 {
+    width: 33.333%;
+}
+
+#video-instruction #workbook-box {
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+    height: 147px;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+    background: linear-gradient(to bottom right,#fff,#f5f5f5);
+}
+#video-instruction #workbook-box h1 {
+    font-size: 19px;
+}
+
+#video-instruction #workbook-box h1 a {
+    text-shadow: none;
+    font-weight: normal;
+    color: black;
+    text-decoration: none;
+}
+#video-instruction #vsmac-box {
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+    height: 147px;
+    background: linear-gradient(to bottom right,#fff,#c479c5);
+}
+
+
+#video-instruction #vsmac-box .box-wrapper {
+	background-image: url(/theme/assets/images/docs/home/hero/vsmac.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    height: 147px;
+}
+.wrapper {
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+#platform-blocks {
+    padding-bottom: 36px;
+}
+.content.alternate {
+    background: #ecf0f1;
+}
+.shadow-top {
+    box-shadow: inset 1px 4px 14px -6px rgba(21,21,21,0.2);
+}
+
+
+template.css:1
+.content {
+    padding: 60px 40px;
+    margin: 0 auto;
+}
+
+@media (max-width: 992px){
+template.css:1
+]
+.wrapper {
+    max-width: 902px;
+}
+.top-gap {
+    margin-top: 40px!important;
+    float:left;
+}
+.columns .cell.width-3 {
+    width: 25%;
+}
+
+.columns .cell.first {
+    margin-left: 0!important;
+    clear: left;
+}
+#platform-blocks .platform-block {
+    background: #d1d9dd;
+    padding: 0!important;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: box-shadow 200ms ease;
+}
+
+#platform-blocks .platform-block.ios>a {
+    background: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 0;
+    font-size: 18px;
+    color: #365271;
+    
+}
+#platform-blocks .platform-block.ios .steps, #platform-blocks .platform-block.ios footer {
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left:0px;
+    margin-top:0px;
+}
+}
+#platform-blocks .platform-block .steps {
+    padding: 20px;
+}
+ul li, ol li {
+    display: list-item;
+
+}
+
+#platform-blocks .platform-block.xplat .steps strong, #platform-blocks .platform-block.xplat footer strong {
+    display: inline;
+    font-weight: normal;
+    font-size: 13px;
+    color: #76828a;
+}
+#platform-blocks .platform-block.xplat .steps, #platform-blocks .platform-block.xplat footer {
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left:0px;
+    margin-top:0px;
+}
+}
+#platform-blocks .platform-block.xplat>a {
+    background: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 0;
+    font-size: 18px;
+    color: #365271;
+}
+#platform-blocks .platform-block.xplat .steps, #platform-blocks .platform-block.xplat footer {
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+#platform-blocks .platform-block .steps a {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    padding-left: 73px;
+}
+#platform-blocks .platform-block.xplat .steps a, #platform-blocks .platform-block.xplat footer a {
+    padding: 0;
+}
+#platform-blocks .platform-block.xplat .steps strong, #platform-blocks .platform-block.xplat footer strong {
+    display: inline;
+    font-weight: normal;
+    font-size: 13px;
+    color: #76828a;
+}
+
+#platform-blocks .platform-block {
+    background: #d1d9dd;
+    padding: 0!important;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: box-shadow 200ms ease;
+}
+.columns .cell.width-3 {
+    width: 25%;
+}
+#platform-blocks .platform-block>a {
+	background: white;
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal;
+    text-decoration: none;
+    padding: 20px;
+    display: block;
+    padding-left: 58px;
+    border-radius: 4px 4px 0 0;
+}
+#platform-blocks .platform-block.xplat .steps li, #platform-blocks .platform-block.xplat footer li {
+    margin-left: 20px;
+}
+
+#platform-blocks .platform-block .steps a strong {
+    display: block;
+    color: #000;
+    margin-top: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display:inline;
+}
+
+p:last-child, ul:last-child, ol:last-child, pre:last-child, blockquote:last-child {
+    margin-bottom: 0;
+}
+#platform-blocks .platform-block.ios .steps li, #platform-blocks .platform-block.ios footer li {
+    margin-left: 20px;
+}
+
+#platform-blocks .platform-block.forms .topper {
+    background: url(C:/users/rcferguson/Desktop/NoResource/images/document/cattura.png);
+    padding-top: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px 4px 0 0;
+}
+
+#platform-blocks .platform-block.ios .topper {
+    background: url(C:/users/rcferguson/Desktop/NoResource/images/document/aruba.png);
+    padding-top: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px 4px 0 0;
+}
+#platform-blocks .platform-block.cisco .topper {
+    background: url(C:/users/rcferguson/Desktop/NoResource/images/document/cisco.png);
+    padding-top: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px 4px 0 0;
+}
+#platform-blocks .platform-block.android .topper {
+    background: url(C:/users/rcferguson/Desktop/NoResource/images/document/kalturalogo.png);
+    padding-top: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px 4px 0 0;
+}
+#platform-blocks .platform-block.fluke .topper {
+    background: url(C:/users/rcferguson/Desktop/NoResource/images/document/fluke.png);
+    padding-top: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px 4px 0 0;
+}
+
+#platform-blocks .platform-block.ios .steps a, #platform-blocks .platform-block.ios footer a {
+    padding: 0;
+}
+element.style {
+}
+
+.columns .cell {
+    margin: 0;
+    padding: 0 20px;
+    float: left;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#platform-blocks .platform-block.cisco>a {
+    background: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 0;
+    font-size: 18px;
+    color: #365271;
+}
+
+#platform-blocks .platform-block.android>a {
+    background: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 0;
+    font-size: 18px;
+    color: #365271;
+}
+#platform-blocks .platform-block.ios>a {
+    background: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 0;
+    font-size: 18px;
+    color: #365271;
+}
+
+#platform-blocks .platform-block.fluke>a {
+    background: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 0;
+    font-size: 18px;
+    color: #365271;
+}
+#platform-blocks .platform-block.forms .steps, #platform-blocks .platform-block.forms footer {
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+} 
+
+#platform-blocks .platform-block.ios .steps, #platform-blocks .platform-block.ios footer{
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+
+}
+#platform-blocks .platform-block.android .steps, #platform-blocks .platform-block.android footer{
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+
+}
+#platform-blocks .platform-block.fluke .steps, #platform-blocks .platform-block.fluke footer{
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+
+}
+#platform-blocks .platform-block.cisco .steps, #platform-blocks .platform-block.cisco footer{
+    background: white;
+    list-style-type: circle;
+    border-radius: 0 0 4px 4px;
+    overflow-x: hidden;
+    line-height: .5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+
+}
+
+#platform-blocks .platform-block.ios .steps li, #platform-blocks .platform-block.ios footer li {
+    margin-left: 20px;
+}
+
+#platform-blocks .platform-block.forms .steps li, #platform-blocks .platform-block.forms footer li {
+    margin-left: 20px;
+}
+
+#platform-blocks .platform-block.android .steps li, #platform-blocks .platform-block.android footer li {
+    margin-left: 20px;
+}
+#platform-blocks .platform-block.fluke .steps li, #platform-blocks .platform-block.fluke footer li {
+    margin-left: 20px;
+}
+#platform-blocks .platform-block.cisco .steps li, #platform-blocks .platform-block.cisco footer li {
+    margin-left: 20px;
+}
+
+#platform-blocks .platform-block.forms .steps a, #platform-blocks .platform-block.forms footer a {
+    padding: 0px;
+}
+
+#platform-blocks .platform-block.ios .steps a, #platform-blocks .platform-block.ios footer a {
+    padding: 0px;
+}
+#platform-blocks .platform-block.fluke .steps a, #platform-blocks .platform-block.fluke footer a {
+    padding: 0px;
+}
+
+#platform-blocks .platform-block.android .steps a, #platform-blocks .platform-block.android footer a {
+    padding: 0px;
+}
+
+#platform-blocks .platform-block.cisco .steps a, #platform-blocks .platform-block.cisco footer a {
+    padding: 0px;
+}
+
+
+
+.steps{
+	padding-left:30px;
+}
+
+
+
+#platform-blocks .platform-block.forms>a {
+    background: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 0;
+    font-size: 18px;
+    color: #365271;
+}
+
+#platform-blocks .platform-block>a {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal;
+    text-decoration: none;
+    padding: 20px;
+    display: block;
+    padding-left: 58px;
+    border-radius: 4px 4px 0 0;
+    
+}
+
+
+.box-wrapper {
+padding-top: 0px;
+padding-bottom: 0px;
+padding-left:0px;
+padding-right: 0px; 
+margin-top: 0px;
+
+
+}
+
+html, body {
+  height: 100%;
+}
+  
+html, body {
+  height: 100%;
+}
+  
+.carousel {
+  width: 100%;
+  background-color: #000;
+  height: 100%;
+}
+
+.carousel-fade .carousel-inner .item {
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+}
+
+
+.carousel-fade .carousel-inner .item,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  opacity: 0;
+}
+
+.carousel-fade .carousel-inner .active,
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+
+.carousel-fade .carousel-inner .next,
+.carousel-fade .carousel-inner .prev,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+  .glyphicon {
+    font-size: 6rem;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-inner .item {
+  height: 100%;
+}
+
+.stopfade {
+  opacity: .5;
+}
+
+.slide-content {
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+  
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transition: 1s opacity;
+    transition: 1s opacity;
+}
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+ 
+.door {
+  font-family: Revista-Black
+  display: flex
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 1
+}
+  
+  .title {
+    font-size: 14rem;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    line-height: 13rem;
+}
+
+  .description   {
+    border-top: 1px solid white;
+    margin-top: 15px;
+    font-size: 4rem;
+}

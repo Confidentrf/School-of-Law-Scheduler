@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html >
+<head>
+	
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link hrefs='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  
+  <link  href="styles/styless.css" rel="stylesheet">
+  <link  href="styles/normalize.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="resources/jquery-ui.css">
+  
+  <script src="resources/jquery-1.12.4.js"></script>
+
+  <script src="resources/jquery-ui.js"></script>
+
+
+
+<script type="text/javascript">
+    //<![CDATA[
+
+        var headerSearchFormTarget = document.getElementById('eSearch-link');
+        if(headerSearchFormTarget !== null) {
+            kmsReact.ReactDOM.render(kmsReact.React.createElement(kmsReact.HeaderSearchForm,{ searchUrl: '/esearch/search?keyword', placeholder: 'Search all media', targetId: 'logoMark', renderTargetId: 'logoMarkTarget', headerId: 'navbar-inner-wrapper', headerLinkClass: 'eSearch__link', clearElementId: 'toplinks' ,mobileClearElementSelector: '.js-desktop-upload-menu', expanded: 0, tabIndex: 110} ), headerSearchFormTarget);
+        }    //]]>
+</script>
+
+
+
+
+<script type='text/javascript'> 
+	// ON LOAD HANDLER
+	$(function(){
+		// Custom Functions
+		
+		function hideAllButOne(targetPage){
+			$("body > span:visible").not("#banner").hide();
+			$("#banner").show();
+			$("#" + targetPage).show();
+		}
+		
+		hideAllButOne('loginPage');
+		// Handels if a user is already logged in
+		$.ajax({
+				url:"squidgLogic.php",
+				method:"POST",
+				data:{ 
+					form:"loggedin"
+				},
+				success:function(result){
+					hideAllButOne("loginPage");
+				},
+				error:function(result){
+					$("span:visible").hide();
+					$("#loginPage").show();
+				}
+			});
+	
+		// Login page login button handler
+		$('#loginBttn').click(function(){
+			$('#loginFormErr').html('');
+			$.ajax({
+				url:"squidgLogic.php",
+				method:"POST",
+				data:{ 
+					username:$('#username').val(), 
+					password:$('#password').val(),
+					form:"squid2dev.html"
+				},
+				success:function(result){
+					hideAllButOne("loginPage")
+				},
+				error:function(result){
+					var res = result['responseText'];
+					res = jQuery.parseJSON(res);
+					$('#loginFormErr').html(res['error']);
+				}
+			});
+		});
+		// Login page login button handler
+		$('#clearSchedulerFormBttn').click(function(){
+			$('#schedulerForm')[0].reset();
+		});
+	});
+
+</script>
+</head>
+<style>
+
+
+html {
+	font-family:"Arial";
+}
+
+.right {
+    float: right;
+    width: 300px;
+    padding: 1px;
+}
+
+.left {
+	float: left;
+    width: 300px;
+    padding: 1px;
+}
+
+.error {
+	color: red;
+}
+
+.mgmtOpt {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+
+
+li {
+  text-align: center;
+  
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+.roomSelection{
+      margin: auto;
+      width: 50%;
+      border: 3px solid green;
+      padding: 10px;
+
+    }
+.label{
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 32px;
+    text-transform: 
+  
+}
+</style>
+
+
+
+
+
+<body id="body">
+
+<header>
+      <figure style="margin:0;" class="luthumbnail">
+      <img src="images/logo/liberty.png" alt="placeholder" > 
+      </figure>
+      <!--
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+       <title>Login</title>
+	  -->
+<span id="banner">
+		<div id="lu-gh-bar">
+		  <ul1 id="lu-gh-links">
+		    <li id="lu-gh-official"><a href="squid2Dev.html" id="homePageLnk" class="lu-gh-active-link">Home</a></li>
+		    <li><a href="about.html" data-href="more" id="lu-gh-more" class="lu-gh-control">About</a></li>
+		  <!-- href="listRecordings.html"  id="lu-gh-Schedule"  -->
+		  <li><a id="schedulerPageLnk" href="scheduleCapture.html" class="lu-gh-control">Schedule A Capture </a></li>
+		    <li><a href="listRecordings.html" data-href="more" id="lu-gh-more" class="lu-gh-control">Show/Delete</a></li>
+
+		  </ul1>
+
+		 <div class="signin">
+		  <ul id="lu-gh-links">
+		    <li> <a id="logoutLnk" href="javascript:void(0)" class="lu-gh-control">Logout</a> </li>
+		  </ul>
+		 </div>
+		<ul id="lu-gh-user" style="top: 0px; opacity: 1; display: block;"></ul>
+		</div>
+</span><br><br/>
+
+ </header>
+
+
+<!-- LOGIN PAGE -->
+
+<span id="loginPage">
+	<h3 style="padding-left: 25px";> Scheduler Login </h3>
+	<form id="loginForm" method=POST>
+	<div class="login-wrap">
+	  <div class="login-html">
+	    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+	    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+		  
+			    <div class="login-form">
+			      <div class="sign-in-htm">
+			        <div class="group">
+					
+
+							
+							
+							<label for="user" class="label">Username</label>
+							<input type="text" id="username" name="username" class="input"> <br>
+							<label for="pass" class="label">Password</label>
+							<input type="password" id="password" name="password" class="input" data-type="password"><br>
+							
+		          				<input type="submit" class="button" value="Login" id="loginBttn">
+		        			
+							<span class="error" id="loginFormErr"></span>
+							
+
+
+			        </div>
+			      </div>
+			    </div>
+			
+					
+	    </div>
+	  </div>
+	  
+	</form>
+</span>

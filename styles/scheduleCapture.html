@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+  <title>Login Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link hrefs='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  
+  <link  href="styles/styless.css" rel="stylesheet">
+  <link  href="styles/normalize.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styleSched.css">
+
+  
+  <link rel="stylesheet" href="resources/jquery-ui.css">
+  
+  <script src="resources/jquery-1.12.4.js"></script>
+
+  <script src="resources/jquery-ui.js"></script>
+  <script src="resources/jquery-3.3.1.min.js" type="text/javascript"></script>
+    
+<header>
+      <figure style="margin:0;" class="luthumbnail">
+      <img src="images/logo/liberty.png" alt="placeholder" > 
+      </figure>
+      <!--
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+       <title>Login</title>
+    -->
+<span id="banner">
+    <div id="lu-gh-bar">
+      <ul1 id="lu-gh-links">
+        <li id="lu-gh-official"><a href="squid2dev.html"  id="homePageLnk" class="lu-gh-control">Home</a></li>
+        <li><a href="more" data-href="more" id="lu-gh-more" class="lu-gh-control">About</a></li>
+      <!-- href="listRecordings.html"  id="lu-gh-Schedule"  -->
+      <li><a id="schedulerPageLnk" href="scheduleCapture.html" class="lu-gh-active-link">Schedule A Capture </a></li>
+        <li><a href="listRecordings.html" data-href="more" id="lu-gh-more" class="lu-gh-control">Show/Delete</a></li>
+
+      </ul1>
+
+     <div class="signin">
+      <ul id="lu-gh-links">
+        <li> <a id="logoutLnk" href="javascript:void(0)" class="lu-gh-control">Logout</a> </li>
+      </ul>
+     </div>
+    <ul id="lu-gh-user" style="top: 0px; opacity: 1; display: block;"></ul>
+    </div>
+</span><br>
+
+ </header>
+ 
+<style>
+html {
+  font-family:"Arial";
+}
+
+.right {
+    float: right;
+    width: 300px;
+    padding: 1px;
+}
+
+.left {
+  float: left;
+    width: 300px;
+    padding: 1px;
+}
+
+.error {
+  color: red;
+}
+
+.mgmtOpt {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+
+
+li {
+  text-align: center;
+  
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+.roomSelection{
+      margin: auto;
+      width: 50%;
+      border: 3px solid green;
+      padding: 10px;
+
+    }
+.label{
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 32px;
+    text-transform: 
+  
+}
+</style>
+
+
+  <!-- SCHEDULER PAGE -->
+<span id="schedulerPage">
+  <h3>Schedule A Capture</h3>
+  <form class ="roomSelection"id="schedulerForm">
+    <table border="1">
+     
+                 
+            
+      <tr><td>* Subject:</td><td><input type="text" id="subject" name="subject" ></td></tr>
+      <tr><td>* Start Time (EST):</td><td><input type="text" id="startTime" name="startTime" ><i>YYYY/MM/DD HH:mm:ss</i></td></tr> 
+      <tr><td>* End Time (EST):</td><td><input type="text" id="endTime" name="endTime" ><i>YYYY/MM/DD HH:mm:ss</i></td></tr>
+      <tr><td>*Room:</td><td>
+                <select id="location" name="location">
+                  <option value="" selected ></option>
+                  <option value="CMHS1025@liberty.edu">CHMS 1025 Auditorium 1</option>
+                  <option value="CMHS1014@liberty.edu">CHMS 1014 Auditorium 2</option>
+                  <option value="CMHS1047@liberty.edu">CHMS 1047 PA Classroom</option>
+                  <option value="CMHS2042@liberty.edu">CHMS 2042 Simulation Classroom 1</option>
+                  <option value="CMHS2049@liberty.edu">CHMS 2049 Simulation Classroom 2</option>
+                  <option value="CMHS4067@liberty.edu">CHMS 4067 OMM Lab 1</option>
+                  <option value="CMHS4005@liberty.edu">CHMS 4005 OMM Lab 2</option>
+                  <option value="CMHS4056@liberty.edu">CHMS 4056 Anatomy Lab</option>
+                </select>
+              </td></tr>
+      <!-- <tr><td>* School:</td> <td>-->  <input type="hidden" id="school" name="school" value="LCOM"> <!-- </td></tr> -->
+      <!-- <tr><td>Class Name:</td><td><input type="text" id="className" name="className" ></td></tr> -->
+      <!--<tr><td>* Class Number:</td><td><input type="text" id="classNumber" name="classNumber" ></td></tr>-->
+      <!--<tr><td>* Class Section:</td><td><input type="text" id="classSection" name="classSection" value="001"></td></tr>
+      <tr><td>-->
+      <!--Class Term:</td><td><input type="text" id="classTerm" name="classTerm" value="201925"></td></tr>-->
+      <!-- <tr><td>Professor's Name:</td><td><input type="text" id="profName" name="profName" ></td></tr> -->
+      <!-- <tr><td>Guest lecturer:</td><td>
+                      <select id="guestLec">
+                        <option value="" selected>No</option>
+                        <option value="yes">Yes</option>
+                      </select>
+                    </td></tr> -->
+      <!-- <tr><td>Publishing delay:</td><td><input type="text" id="publishDelay" name="publishDelay" value="0"></td></tr> --> 
+      <!-- <tr><td>Key Terms/tags:</td><td><input type="text" id="keyTerms" name="keyTerms" ></td></tr> --> 
+      <!-- <tr><td>* Retention Period:</td><td> --> <input type="hidden" id="retentionPeriod" name="retentionPeriod" value="48"><!-- </td></tr> -->
+    </table>
+    <p>* Required field</p>
+    <input type="button" id="schedulerFormBttn" value="Submit">  <input type="button" id="clearSchedulerFormBttn" value="Clear"><br>
+    <span class="error" id="schedulerFormErr"></span>
+    <span id="schedulerFormMsg"></span>
+  </form>
+</span>
+<!-- END SCHEDULER PAGE -->
+
+<script>
+    // Login page login button handler
+    $('#clearSchedulerFormBttn').click(function(){
+      $('#schedulerForm')[0].reset();
+    });
+    
+    // Scheduler page sumbmit button handler
+    $('#schedulerFormBttn').click(function(){
+      console.log($('#startTime').val());
+      console.log($('#endTime').val())
+      $('#schedulerFormErr').html('');
+      $.ajax({
+        url:"squidgLogic.php",
+        method:"POST",
+        data:{ 
+          organizer:$('#organizer').val(),
+          subject:$('#subject').val(),
+          startTime:$('#startTime').val(),
+          endTime:$('#endTime').val(),
+          location:$('#location').val(),
+          school:$('#school').val(),
+          className:$('#className').val(),
+          classNumber:$('#classNumber').val(),
+          classSection:$('#classSection').val(),
+          classTerm:$('#classTerm').val(),
+          profName:$('#profName').val(),
+          guestLec:$('#guestLec').val(),
+          publishDelay:$('#publishDelay').val(),
+          keyTerms:$('#keyTerms').val(),
+          retentionPeriod:$('#retentionPeriod').val(),
+          form:"schedulerForm"
+        },
+        success:function(result){
+          var res = result;
+          res = jQuery.parseJSON(res);
+          $('#schedulerFormMsg').html(res['message'])
+        },
+        error:function(result){
+          var res = result['responseText'];
+          res = jQuery.parseJSON(res);
+          $('#schedulerFormErr').html(res['error'])
+          $('#schedulerFormMsg').html('')
+        }
+      });
+    });
+      // KalturaEntryUpdater page submit button handler
+    $('#kalturaEntryUpdaterBttn').click(function(){
+      $('#kalturaEntryUpdaterFormErr').html('');
+      $.ajax({
+        url:"squidgLogic.php",
+        method:"POST",
+        data:{ 
+          kalturaEntryUpdater_entryID:$('#kalturaEntryUpdater_entryID').val(),
+          kalturaEntryUpdater_GUID:$('#kalturaEntryUpdater_GUID').val(),
+          form:"kalturaEntryUpdaterForm"
+        },
+        success:function(result){
+          var res = result;
+          res = jQuery.parseJSON(res);
+          $('#kalturaEntryUpdaterFormMsg').html(res['message'])
+        },
+        error:function(result){
+          var res = result['responseText'];
+          res = jQuery.parseJSON(res);
+          $('#kalturaEntryUpdaterFormErr').html(res['error'])
+          $('#kalturaEntryUpdaterFormMsg').html('')
+        }
+      });
+    });
+    // Logout link handeler
+    $('#logoutLnk').click(function(){
+      $.ajax({
+        url:"squidgLogic.php",
+        method:"POST",
+        data:{ 
+          form:"logout"
+        },
+        success:function(result){
+          $("span:visible").hide();
+          $("#logoutPage").show();
+        },
+        error:function(result){
+        }
+      });
+    });
+    
+    // Home > "Schedule a Capture" link handeler
+    $('#schedulerPageLnk').click(function(){
+      hideAllButOne("schedulerPage");
+    });
+    $('#kalturaEntryUpdaterPageLnk').click(function(){
+      hideAllButOne("kalturaEntryUpdaterPage");
+    });
+    $('#loginPage').keypress(function(e){
+      if(e.keyCode==13)
+      $('#loginBttn').click();
+    });
+
+
+</script>

@@ -1,0 +1,131 @@
+.site-footer {
+    width: 100%;
+    background: #222;
+    color: #FFF;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+
+*, .col, .contentMain__inner, .form__input, .form__textarea, body {
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px)
+.footer__inner--main {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+@media (max-width: 1024px)
+.footer__inner {
+    flex-direction: column;
+}
+@media (max-width: 1024px)
+.footer__block {
+    box-sizing: border-box;
+    flex: none;
+}
+.footer__inner--main {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.footer__inner {
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer__block {
+    padding-left: 32px;
+    padding-right: 32px;
+    box-sizing: content-box;
+}
+
+.footer__inner--main p {
+    font-size: 14px;
+    color: #9b9b9b;
+    line-height: 22px;
+    margin: 0;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.site-footer {
+    width: 100%;
+    background: #222;
+    color: #FFF;
+}
+
+@media (max-width: 1024px)
+.footer__mobile--1, .footer__mobile--2 {
+    margin-bottom: 50px;
+}
+
+}
+.footer__mobile--1 {
+    flex: 2.5;
+}
+
+.footer__mobile--1, .footer__mobile--2, .footer__mobile--3 {
+    display: flex;
+}
+.footer__block--one, .gst__cta, .owl-stage, .slide__info, h3.gst__heading {
+    text-align: center;
+}
+.footer__logo {
+    max-width: 86px;
+}
+svg[Attributes Style] {
+    width: 100%;
+    height: 100%;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+body {
+    line-height: 1;
+    font-size: 1rem;
+    font-family: Roboto,sans-serif;
+    transition: margin .2s ease-in-out;
+}
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+path[Attributes Style] {
+    fill: rgb(255, 255, 255);
+    fill-rule: evenodd;
+}
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+@media (max-width: 1024px)
+.footer__block--border {
+    border: 0;
+}
+
+.footerCopyright__cYear, .footerCopyright__localTime p, .footer__inner--main a.footer__tel {
+    color: #9b9b9b;
+}
+.footer__tel, .link--noHover:hover {
+    text-decoration: none;
+}
+@media (max-width: 1024px)
+.footer__link {
+    margin-top: 14px;
+}
+element.style {
+    height: 400px;
+}
